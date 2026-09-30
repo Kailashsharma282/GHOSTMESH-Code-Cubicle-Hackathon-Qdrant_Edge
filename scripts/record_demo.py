@@ -83,7 +83,7 @@ def main():
 
         print(f"[{time.time()-start_time:.1f}s] Starting Scene 3: Edge Memory & Local Search (00:28 - 00:50)...")
         # Click SEARCH tab in navigation bar
-        page.locator('nav button:has-text("SEARCH")').click()
+        page.locator('nav button:has-text("Search")').click()
         time.sleep(1.0)
 
         # Select scope LOCAL
@@ -114,7 +114,7 @@ def main():
 
         print(f"[{time.time()-start_time:.1f}s] Starting Scene 4: Kill Network / Offline Test (00:50 - 01:15)...")
         # Return to RADAR
-        page.locator('nav button:has-text("RADAR")').click()
+        page.locator('nav button:has-text("Radar")').click()
         time.sleep(1.5)
 
         # Move mouse toward Device A ONLINE button
@@ -133,7 +133,7 @@ def main():
         time.sleep(2.0)
 
         # Verify offline state by navigating to SEARCH tab while offline
-        page.locator('nav button:has-text("SEARCH")').click()
+        page.locator('nav button:has-text("Search")').click()
         time.sleep(1.0)
         if search_input.count() > 0:
             search_input.click()
@@ -148,7 +148,7 @@ def main():
         time.sleep(max(0, 75.0 - (time.time() - start_time)))
 
         print(f"[{time.time()-start_time:.1f}s] Starting Scene 5: Privacy Policy Engine (01:15 - 01:35)...")
-        page.locator('nav button:has-text("PRIVACY")').click()
+        page.locator('nav button:has-text("Privacy")').click()
         time.sleep(1.5)
 
         privacy_input = page.locator('input[placeholder*="Type sample observation"]')
@@ -170,12 +170,12 @@ def main():
         time.sleep(max(0, 95.0 - (time.time() - start_time)))
 
         print(f"[{time.time()-start_time:.1f}s] Starting Scene 6: Reconnect & Sync Queue Drain (01:35 - 02:00)...")
-        # Go to SYNC QUEUE tab first to show pending queue
-        page.locator('nav button:has-text("SYNC QUEUE")').click()
+        # Go to QUEUE tab first to show pending queue
+        page.locator('nav button:has-text("Queue")').click()
         time.sleep(3.0)
 
         # Go to RADAR tab to reconnect Device A
-        page.locator('nav button:has-text("RADAR")').click()
+        page.locator('nav button:has-text("Radar")').click()
         time.sleep(1.5)
 
         # Reconnect Device A
@@ -196,7 +196,7 @@ def main():
         time.sleep(max(0, 120.0 - (time.time() - start_time)))
 
         print(f"[{time.time()-start_time:.1f}s] Starting Scene 7: Semantic Conflict & Why Not Merge? (02:00 - 02:25)...")
-        page.locator('nav button:has-text("RECONCILIATION")').click()
+        page.locator('nav button:has-text("Reconcile")').click()
         time.sleep(2.0)
 
         # Select first conflict candidate if available
@@ -212,7 +212,7 @@ def main():
         time.sleep(max(0, 145.0 - (time.time() - start_time)))
 
         print(f"[{time.time()-start_time:.1f}s] Starting Scene 8: Semantic Merge & Provenance Graph (02:25 - 02:45)...")
-        page.locator('nav button:has-text("FORENSICS")').click()
+        page.locator('nav button:has-text("Forensics")').click()
         time.sleep(2.0)
 
         # Click canonical decision
@@ -233,11 +233,11 @@ def main():
 
         print(f"[{time.time()-start_time:.1f}s] Starting Scene 9: Final System View & Converged Mesh (02:45 - 02:57)...")
         # System Info tab
-        page.locator('nav button:has-text("SYSTEM INFO")').click()
+        page.locator('nav button:has-text("Specs")').click()
         time.sleep(3.5)
 
         # Return to RADAR for final converged view
-        page.locator('nav button:has-text("RADAR")').click()
+        page.locator('nav button:has-text("Radar")').click()
         time.sleep(1.5)
         smooth_move(page, 960, 800, 960, 540, steps=25) # Center on GhostMesh Core
         time.sleep(max(0, 177.0 - (time.time() - start_time)))
