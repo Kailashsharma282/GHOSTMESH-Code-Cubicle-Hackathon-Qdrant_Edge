@@ -1,0 +1,64 @@
+# ==============================================================================
+# GHOSTMESH RENDER BLUEPRINT (render.yaml)
+# Production Deployment for FastAPI Backend + Qdrant Edge Shards + Neon DB
+# ==============================================================================
+
+services:
+  - type: web
+    name: ghostmesh-api
+    runtime: docker
+    dockerfilePath: apps/api/Dockerfile
+    dockerContext: .
+    plan: free
+    region: oregon # or frankfurt, ohio, singapore
+    healthCheckPath: /health
+    autoDeploy: true
+
+    # NOTE: Persistent Disks require a paid Starter plan ($7/mo + $0.25/GB) and trigger a credit card prompt.
+    # For a 100% FREE deployment (zero credit card), disk is omitted; edge shards run in container storage.
+    # If upgrading to a paid tier with persistent storage, uncomment the block below and set plan: starter
+    # disk:
+    #   name: ghostmesh-edge-storage
+    #   mountPath: /app/data
+    #   sizeGB: 10
+
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 8088
+      - key: LOG_LEVEL
+        value: INFO
+      - key: EDGE_DATA_DIR
+        value: /app/data
+      - key: EMBEDDING_MODEL
+        value: BAAI/bge-small-en-v1.5
+      - key: CLOUD_COLLECTION
+        value: ghostmesh_memories
+      - key: RECONCILIATION_THRESHOLD
+        value: "0.78"
+      - key: DUPLICATE_THRESHOLD
+        value: "0.93"
+
+      # Secrets to be provided in Render UI:
+      # 1. Neon Database connection string
+      - key: DATABASE_URL
+        sync: false
+        placeholder: "postgresql://neondb_owner:PASSWORD@YOUR_NEON_HOST.neon.tech/neondb?sslmode=require"
+
+      # 2. Qdrant Cloud cluster endpoint
+      - key: QDRANT_URL
+        sync: false
+        placeholder: "https://your-cluster.cloud.qdrant.io:6333"
+
+      # 3. Qdrant Cloud API key
+      - key: QDRANT_API_KEY
+        sync: false
+        placeholder: "your_qdrant_api_key_here"
+
+      # 4. Allowed CORS Origins (Vercel Frontend URL)
+      - key: CORS_ORIGINS
+        sync: false
+        placeholder: "https://your-app.vercel.app,*"
