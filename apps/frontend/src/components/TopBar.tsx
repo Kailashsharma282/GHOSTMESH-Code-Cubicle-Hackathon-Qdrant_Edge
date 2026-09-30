@@ -37,9 +37,9 @@ export const TopBar: React.FC<TopBarProps> = ({
   const isHealthy = stats && stats.conflicts_unresolved === 0;
 
   return (
-    <header className="border-b border-slate-800/90 bg-[#070A12]/95 backdrop-blur-md px-5 py-3 flex flex-col gap-3 z-50 shadow-lg">
+    <header className="border-b border-slate-800/90 bg-[#070A12]/95 backdrop-blur-md px-4 py-2 flex flex-col gap-2 z-50 shadow-md shrink-0">
       {/* Upper header row */}
-      <div className="flex items-center justify-between flex-wrap gap-3">
+      <div className="flex items-center justify-between flex-wrap gap-2">
         {/* Brand identity */}
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2.5">
@@ -150,7 +150,7 @@ export const TopBar: React.FC<TopBarProps> = ({
       </div>
 
       {/* Navigation tabs row */}
-      <nav className="flex items-center gap-1.5 overflow-x-auto text-xs border-t border-slate-800/80 pt-2 pr-2">
+      <nav className="flex items-center gap-1 overflow-x-auto text-xs border-t border-slate-800/80 pt-1.5 pr-1">
         {[
           { id: 'radar', label: 'RADAR HUD', icon: Radio, count: null },
           { id: 'memories', label: 'MEMORIES', icon: Layers, count: stats?.local_memories_total },
@@ -168,7 +168,7 @@ export const TopBar: React.FC<TopBarProps> = ({
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-xl transition-all whitespace-nowrap ${
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg transition-all whitespace-nowrap text-[11px] ${
                 isActive
                   ? 'bg-blue-600/25 text-blue-400 border border-blue-500/50 font-semibold shadow-[0_0_15px_rgba(59,130,246,0.2)]'
                   : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-transparent font-medium'
